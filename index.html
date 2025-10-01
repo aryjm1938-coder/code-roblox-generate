@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menu</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #fff9c4; /* amarelo pastel */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-shadow:
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000; /* contorno preto */
+      overflow: hidden;
+    }
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .menu-item {
+      background-color: #fdd835; /* amarelo mais forte para contraste */
+      border-radius: 12px;
+      padding: 15px 30px;
+      text-align: center;
+      font-size: 1.2em;
+      cursor: pointer;
+      user-select: none;
+      box-shadow:
+        0 0 5px rgba(0,0,0,0.3);
+      transition: background-color 0.3s, transform 0.2s;
+      width: 250px;
+    }
+    .menu-item:hover {
+      background-color: #fbc02d;
+      transform: scale(1.05);
+    }
+    .footer-credit {
+      position: fixed;
+      bottom: 10px;
+      right: 15px;
+      font-size: 0.9em;
+      color: white;
+      text-shadow:
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="menu">
+    <div class="menu-item" onclick="window.location.href='https://www.roblox.com/share?code=f3dc2f5aba2d194e8d84d374a7245599&type=Server'">
+      Gerar Server privado
+    </div>
+    <div class="menu-item" onclick="window.location.href='https://www.roblox.com/share?code=f3dc2f5aba2d194e8d84d374a7245599&type=Server'">
+      Privacidade
+    </div>
+    <div class="menu-item" onclick="window.location.href='https://www.roblox.com/share?code=f3dc2f5aba2d194e8d84d374a7245599&type=Server'">
+      Créditos / sobre
+    </div>
+  </div>
+  <div class="footer-credit">
+    Créditos: ex-programador do brain rot.
+  </div>
+</body>
+</html>
