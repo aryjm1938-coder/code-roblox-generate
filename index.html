@@ -20,13 +20,15 @@
         -1px  1px 0 #000,
          1px  1px 0 #000; /* contorno preto */
       overflow: hidden;
+      flex-direction: column;
     }
-    .menu {
+    .menu, .input-section, .second-section {
       display: flex;
       flex-direction: column;
       gap: 20px;
+      align-items: center;
     }
-    .menu-item {
+    .menu-item, button {
       background-color: #fdd835; /* amarelo mais forte para contraste */
       border-radius: 12px;
       padding: 15px 30px;
@@ -34,12 +36,13 @@
       font-size: 1.2em;
       cursor: pointer;
       user-select: none;
-      box-shadow:
-        0 0 5px rgba(0,0,0,0.3);
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
       transition: background-color 0.3s, transform 0.2s;
       width: 250px;
+      color: black;
+      border: none;
     }
-    .menu-item:hover {
+    .menu-item:hover, button:hover {
       background-color: #fbc02d;
       transform: scale(1.05);
     }
@@ -56,20 +59,179 @@
          1px  1px 0 #000;
       user-select: none;
     }
+    input {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 1em;
+      width: 220px;
+    }
+    .back-btn {
+      background-color: transparent;
+      color: black;
+      border: none;
+      font-size: 1em;
+      cursor: pointer;
+      text-shadow:
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+      margin-top: 10px;
+    }
+    .back-btn:hover {
+      text-decoration: underline;
+      color: #fbc02d;
+    }
   </style>
+  <script>
+    function showInputSection() {
+      document.querySelector('.menu').style.display = 'none';
+      document.querySelector('.input-section').style.display = 'flex';
+    }
+    function confirmName() {
+      const name = document.getElementById('nameInput').value.trim();
+      if(!name) {
+        alert('Por favor, insira seu nome.');
+        return;
+      }
+      document.querySelector('.input-section').style.display = 'none';
+      document.querySelector('.second-section').style.display = 'flex';
+    }
+    function criarServidor() {
+      alert('Função para criar servidor privado pode ser implementada aqui.');
+    }
+    function voltarPagina() {
+      // Corretamente volta para a tela anterior
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        // Se não tiver histórico, volta para o menu inicial
+        document.querySelector('.second-section').style.display = 'none';
+        document.querySelector('.input-section').style.display = 'none';
+        document.querySelector('.menu').style.display = 'flex';
+      }
+    }
+    function openPrivacidade() {
+      const novaJanela = window.open('', '_blank');
+      novaJanela.document.write(`
+        <!DOCTYPE html>
+        <html lang="pt-BR">
+        <head>
+          <title>Privacidade</title>
+          <style>
+            body {
+              margin: 0; height: 100vh;
+              display: flex; justify-content: center; align-items: center;
+              font-family: Arial, sans-serif;
+              font-size: 24px;
+              color: white;
+              background-color: #000;
+              text-shadow:
+                -1px -1px 0 #000,
+                 1px -1px 0 #000,
+                -1px  1px 0 #000,
+                 1px  1px 0 #000;
+              flex-direction: column;
+            }
+            button {
+              margin-top: 20px;
+              padding: 10px 20px;
+              font-size: 1em;
+              border-radius: 8px;
+              cursor: pointer;
+              background-color: #fdd835;
+              border: none;
+              color: black;
+              box-shadow: 0 0 5px rgba(0,0,0,0.3);
+              transition: background-color 0.3s;
+            }
+            button:hover {
+              background-color: #fbc02d;
+            }
+          </style>
+        </head>
+        <body>
+          Você não tem autorização para entrar aqui.
+          <button onclick="window.close()">Fechar</button>
+        </body>
+        </html>
+      `);
+      novaJanela.document.close();
+    }
+    function openCreditos() {
+      const novaJanela = window.open('', '_blank');
+      novaJanela.document.write(`
+        <!DOCTYPE html>
+        <html lang="pt-BR">
+        <head>
+          <title>Créditos</title>
+          <style>
+            body {
+              margin: 0; height: 100vh;
+              display: flex; justify-content: center; align-items: center;
+              font-family: Arial, sans-serif;
+              font-size: 24px;
+              color: white;
+              background-color: #000;
+              text-shadow:
+                -1px -1px 0 #000,
+                 1px -1px 0 #000,
+                -1px  1px 0 #000,
+                 1px  1px 0 #000;
+              flex-direction: column;
+            }
+            button {
+              margin-top: 20px;
+              padding: 10px 20px;
+              font-size: 1em;
+              border-radius: 8px;
+              cursor: pointer;
+              background-color: #fdd835;
+              border: none;
+              color: black;
+              box-shadow: 0 0 5px rgba(0,0,0,0.3);
+              transition: background-color 0.3s;
+            }
+            button:hover {
+              background-color: #fbc02d;
+            }
+          </style>
+        </head>
+        <body>
+          Eu &gt; Sammy. Me tirou de programador e agora você vai sofrer.
+          <button onclick="window.close()">Fechar</button>
+        </body>
+        </html>
+      `);
+      novaJanela.document.close();
+    }
+  </script>
 </head>
 <body>
   <div class="menu">
-    <div class="menu-item" onclick="window.location.href='https://www.roblox.com/share?code=f3dc2f5aba2d194e8d84d374a7245599&type=Server'">
+    <div class="menu-item" onclick="showInputSection()">
       Gerar Server privado
     </div>
-    <div class="menu-item" onclick="window.location.href='https://www.roblox.com/share?code=f3dc2f5aba2d194e8d84d374a7245599&type=Server'">
+    <div class="menu-item" onclick="openPrivacidade()">
       Privacidade
     </div>
-    <div class="menu-item" onclick="window.location.href='https://www.roblox.com/share?code=f3dc2f5aba2d194e8d84d374a7245599&type=Server'">
+    <div class="menu-item" onclick="openCreditos()">
       Créditos / sobre
     </div>
   </div>
+
+  <div class="input-section" style="display:none;">
+    <input type="text" id="nameInput" placeholder="Digite seu nome" />
+    <button onclick="confirmName()">Confirmar</button>
+    <button class="back-btn" onclick="voltarPagina()">Voltar</button>
+  </div>
+
+  <div class="second-section" style="display:none; flex-direction: column; gap: 20px;">
+    <button onclick="criarServidor()">Criar servidor privado</button>
+    <button class="back-btn" onclick="voltarPagina()">Voltar</button>
+  </div>
+
   <div class="footer-credit">
     Créditos: ex-programador do brain rot.
   </div>
